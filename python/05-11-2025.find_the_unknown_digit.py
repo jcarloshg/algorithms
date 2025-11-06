@@ -65,8 +65,7 @@ def solve_runes(runes: str):
         left_side, right_side = new_runes.split('=')
 
         # check that the left side has the form [num][op][num]
-        left_side_nums = left_side.replace(
-            "+", " ").replace("-", " ").replace("*", " ").split()
+        left_side_nums = left_side.replace("+", " ").replace("-", " ").replace("*", " ").split()
         for num in left_side_nums:
             if len(num) == 0:
                 continue
