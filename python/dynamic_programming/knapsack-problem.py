@@ -50,17 +50,66 @@ from pprint import pprint
 
 def knapsack(weights: list[int], values: list[int], capacity: int):
 
+    # create the table
     items_len = len(weights)
     table = [
-        [0 for _ in colums+1]
-        for colums in items_len + 1
+        [0 for _ in range(capacity+1)]
+        for _ in range(items_len+1)
     ]
 
-    return table
+    # data to return
+    max_value = 0
+    items = []
+
+    # save the cache of values
+    for item_index in range(1, items_len + 1):
+
+        item_weight = weights[item_index - 1]
+        item_value = values[item_index-1]
+
+        for capacity_index in range(capacity+1):
+
+            current_capacity = capacity_index
+            can_be_added = current_capacity >= item_weight
+
+            if not can_be_added:
+                previous_value_calculated = table[item_index-1][capacity_index]
+                table[item_index][capacity_index] = previous_value_calculated
+                continue
+
+            # prev value calculated
+            value_cached = table[item_index - 1][capacity_index]
+
+            # new value calculated
+            weight_available = capacity_index - item_weight
+            new_value_calculated = table[item_index - 1][weight_available]
+            new_value_calculated = item_value + new_value_calculated
+
+            max_value = max(value_cached, new_value_calculated)
+            table[item_index][capacity_index] = max_value
+
+            # updated the list items to return
+            is_the_current_capacity = capacity_index == capacity
+            was_the_value_updated = max_value == new_value_calculated
+            if was_the_value_updated and is_the_current_capacity:
+                item = (
+                    weights[item_index - 1],
+                    values[item_index-1]
+                )
+                items.append(item)
+
+    print("DP Table:")
+    for row in table:
+        print(" ".join(f"{cell:3}" for cell in row))
+
+    return {
+        "maximum_value": max_value,
+        "items": items
+    }
 
 
-capacity = 5
+max_capacity = 5
 weights: list[int] = [2, 3, 4]
 values: list[int] = [3, 4, 5]
 
-print(f"knapsack {knapsack(weights, values, capacity)}")
+print(f"knapsack {knapsack(weights, values, max_capacity)}")
