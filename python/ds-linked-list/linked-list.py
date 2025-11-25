@@ -90,6 +90,24 @@ class LinkedList:
             i += 1
         print("\n")
 
+    def reserse(self):
+        # If the list is empty, do nothing
+        if self._tail is None:
+            return
+        # If the list has only one node, do nothing
+        if self._tail.get_next() is None:
+            return
+
+        prev = None  # Previous node starts as None
+        current = self._tail  # Start from the tail (first node)
+        self._head = current  # Set head to current (will be updated in loop)
+        while current:
+            next_node = current.get_next()  # Store next node
+            current.set_next(prev)  # Reverse the link
+            prev = current  # Move prev to current node
+            current = next_node  # Move to next node in original list
+        self._tail = prev  # After loop, prev is the new tail (was head)
+
 
 linkedList = LinkedList()
 linkedList.apped("jose")
@@ -101,4 +119,7 @@ linkedList.prepend("garcia")
 linkedList.print()
 
 linkedList.insert(2, "andree")
+linkedList.print()
+
+linkedList.reserse()
 linkedList.print()
