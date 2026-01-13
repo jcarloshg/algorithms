@@ -27,11 +27,6 @@ function maxRequestsInWindow(requests: number[], windowSize: number): number {
 
     for (let right = 0; right < requests.length; right++) {
 
-        // console.log(`slide: ${requests.slice(left, right + 1)}`);
-        // console.log(`left, right: ${left}, ${right}, ${requests[right]}, ${requests[left]}`);
-        // console.log(`left - right -> ${requests[right] - requests[left]}`);
-
-
         // Shrink window if outside windowSize
         while (requests[right] - requests[left] >= windowSize) {
             left++;
