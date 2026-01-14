@@ -32,3 +32,7 @@ Here are some of the most common design techniques besides Divide and Conquer:
 
 - **Idea:** Solves a problem by transforming it into a different, simpler, or more convenient instance of the same problem (or an entirely different problem), solving the transformed problem, and then using the solution to solve the original problem.
 - **Examples:** **Heapsort** (transforms an array into a heap), and finding the **median** of a list.
+
+# Python:
+
+- enumerate
