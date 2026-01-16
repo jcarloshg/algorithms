@@ -8,7 +8,7 @@
   },
   "include": [
     "./**/*.ts"
-  ],
+, "01.sliding-window-and-two-points/sliding-window/api-ratets"  ],
   "exclude": [
     "node_modules",
     "dist"
