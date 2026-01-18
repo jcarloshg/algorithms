@@ -30,7 +30,7 @@
 // Constraints:
 //
 // 1 <= words.length <= 105
-// words[i].length == 2
+// words[i].length === 2
 // words[i] consists of lowercase English letters.
 
 function longestPalindrome(words: string[]): number {
@@ -46,29 +46,34 @@ function longestPalindrome(words: string[]): number {
     let longestPalindrome = 0;
     let hasOdd = false;
 
-    for (const item of frequency) {
-        const [word, freq] = item;
+    for (const [word, freq] of frequency) {
 
-        let reverseWord = "";
-        for (let i = word.length - 1; i >= 0; i--) reverseWord += word[i];
+        let reveserWord = "";
+        for (let i = word.length - 1; i >= 0; i--) reveserWord += word[i];
 
-        const hasReverse = frequency.get(reverseWord) == undefined ? false : true;
-        if (hasReverse == false && hasOdd == false) {
-            // [aa] works because [aa] <-> [aa]
-            // [ab] just works if [ba] is in the array
-            if (word === reverseWord) {
+        // case for aa <-> aa, bb <-> bb
+        if (word === reveserWord) {
+            // add lenght of word * frequency
+            const module = freq % 2;
+            const pairs = freq - module;
+            longestPalindrome += word.length * pairs;
+
+            if (hasOdd === false && module === 1) {
                 hasOdd = true;
                 longestPalindrome += word.length;
             }
-        } else {
-            // operate with the minor frequecy
-            const freqReverse = frequency.get(reverseWord)!;
-            const freqCurrWord = frequency.get(word)!;
-            const minFreq = freqReverse < freqCurrWord ? freqReverse : freqCurrWord;
+        }
 
-            // value to sum
-            const valueToSum = word.length * minFreq;
-            longestPalindrome += valueToSum;
+        if (word != reveserWord) {
+            const hasReverse =
+                frequency.get(reveserWord) === undefined ? false : true;
+            if (hasReverse === true) {
+                const minFreq = Math.min(
+                    frequency.get(word) ?? 0,
+                    frequency.get(reveserWord) ?? 0,
+                );
+                longestPalindrome += word.length * minFreq;
+            }
         }
     }
 
@@ -80,8 +85,55 @@ console.log(
     longestPalindrome(["ab", "ty", "yt", "lc", "cl", "ab"]),
 );
 
+console.log(`longestPalindrome: `, longestPalindrome(["lc", "cl", "gg"]));
+
+console.log(
+    `longestPalindrome ["cc", "ll", "xx"]: `,
+    longestPalindrome(["cc", "ll", "xx"]),
+);
+//
+console.log(
+    `longestPalindrome: `,
+    longestPalindrome([
+        "dd",
+        "aa",
+        "bb",
+        "dd",
+        "aa",
+        "dd",
+        "bb",
+        "dd",
+        "aa",
+        "cc",
+        "bb",
+        "cc",
+        "dd",
+        "cc",
+    ]),
+);
 
 console.log(
     `longestPalindrome: `,
-    longestPalindrome(["lc", "cl", "gg"])
+    longestPalindrome([
+        "ll",
+        "lb",
+        "bb",
+        "bx",
+        "xx",
+        "lx",
+        "xx",
+        "lx",
+        "ll",
+        "xb",
+        "bx",
+        "lb",
+        "bb",
+        "lb",
+        "bl",
+        "bb",
+        "bx",
+        "xl",
+        "lb",
+        "xx",
+    ]),
 );
