@@ -34,66 +34,91 @@
 // words[i] consists of lowercase English letters.
 
 function longestPalindrome(words: string[]): number {
-    // get the frequency by word
-    const frequency = new Map<string, number>();
-    words.forEach((w) => {
-        // save frequency
-        let freq = frequency.get(w);
-        if (freq === undefined) freq = 0;
-        frequency.set(w, freq + 1);
-    });
+    const frequency = new Map();
+    words.forEach((w) => frequency.set(w, (frequency.get(w) || 0) + 1));
 
-    let longestPalindrome = 0;
-    let hasOdd = false;
+    console.log(`frequency: `, frequency);
 
-    for (const [word, freq] of frequency) {
+    let longest = 0;
+    let hadMiddleWord = false;
 
-        let reveserWord = "";
-        for (let i = word.length - 1; i >= 0; i--) reveserWord += word[i];
+    const keysArray = Array.from(frequency.keys());
 
-        // case for aa <-> aa, bb <-> bb
-        if (word === reveserWord) {
-            // add lenght of word * frequency
-            const module = freq % 2;
-            const pairs = freq - module;
-            longestPalindrome += word.length * pairs;
+    for (let i = 0; i < keysArray.length; i++) {
+        const word = keysArray[i];
+        const reverseWord = word[1] + word[0];
 
-            if (hasOdd === false && module === 1) {
-                hasOdd = true;
-                longestPalindrome += word.length;
+        console.log("\n");
+        console.log(`keysArray: `, keysArray);
+        console.log(`word ${word}`, `reverseWord ${reverseWord}`);
+
+        // for cases gg <-> gg, aa <-> aa
+        if (word === reverseWord) {
+            const freq = frequency.get(reverseWord)!;
+            console.log(`${word} -> ${freq}`);
+
+
+            // for cases gg -> 1
+            if (freq === 1 && hadMiddleWord === false) {
+                longest += freq * 2;
+                hadMiddleWord = true;
             }
+
+            // for cases aa -> 3
+            if (freq > 1) {
+                const exedente = freq % 2 // 1
+                const forUse = freq - exedente; // 3 - 1 = 2
+                const remainder = freq - forUse; // 3 - 2 = 1
+
+                // here use 2
+                longest += forUse * 2;
+                console.log(`longest: `, longest);
+                // here use the remainder = 1
+                if (remainder === 1 && hadMiddleWord === false) {
+                    longest += remainder * 2;
+                    console.log(`longest: `, longest);
+                    hadMiddleWord = true;
+                }
+            }
+
+            continue;
         }
 
-        if (word != reveserWord) {
-            const hasReverse =
-                frequency.get(reveserWord) === undefined ? false : true;
-            if (hasReverse === true) {
-                const minFreq = Math.min(
-                    frequency.get(word) ?? 0,
-                    frequency.get(reveserWord) ?? 0,
-                );
-                longestPalindrome += word.length * minFreq;
-            }
+        const existsReverseWord = frequency.has(reverseWord);
+        if (existsReverseWord == true) {
+            const wordFreq = frequency.get(word) || 0;
+            const reverseWordFreq = frequency.get(reverseWord) || 0;
+
+            console.log(`word: ${word} ${wordFreq}`);
+            console.log(`reverseWordFreq: ${reverseWord} ${reverseWordFreq}`);
+
+            // These were already used
+            if (wordFreq === 0) continue;
+            if (reverseWordFreq === 0) continue;
+
+            const minFreq = Math.min(wordFreq, reverseWordFreq);
+            longest += minFreq * 2 * 2;
+            console.log(`longest: `, longest);
+
+            frequency.set(word, wordFreq - minFreq);
+            frequency.set(reverseWord, reverseWordFreq - minFreq);
         }
     }
 
-    return longestPalindrome;
+    return longest;
 }
 
 console.log(
-    `longestPalindrome: `,
+    `["ab", "ty", "yt", "lc", "cl", "ab"]`,
     longestPalindrome(["ab", "ty", "yt", "lc", "cl", "ab"]),
 );
 
-console.log(`longestPalindrome: `, longestPalindrome(["lc", "cl", "gg"]));
+console.log(`["lc", "cl", "gg"]`, longestPalindrome(["lc", "cl", "gg"]));
 
-console.log(
-    `longestPalindrome ["cc", "ll", "xx"]: `,
-    longestPalindrome(["cc", "ll", "xx"]),
-);
+console.log(`["cc", "ll", "xx"]`, longestPalindrome(["cc", "ll", "xx"]));
 //
 console.log(
-    `longestPalindrome: `,
+    `["dd", "aa", "bb", "dd", "aa", "dd", "bb", "dd", "aa", "cc", "bb", "cc", "dd", "cc",]`,
     longestPalindrome([
         "dd",
         "aa",
@@ -113,7 +138,7 @@ console.log(
 );
 
 console.log(
-    `longestPalindrome: `,
+    `["ll", "lb", "bb", "bx", "xx", "lx", "xx", "lx", "ll", "xb", "bx", "lb", "bb", "lb", "bl", "bb", "bx", "xl", "lb", "xx",]`,
     longestPalindrome([
         "ll",
         "lb",
@@ -136,4 +161,10 @@ console.log(
         "lb",
         "xx",
     ]),
+);
+
+
+console.log(
+    `["dd", "aa", "bb", "dd", "aa", "dd", "bb", "dd", "aa", "cc", "bb", "cc", "dd", "cc"]: `,
+    longestPalindrome(["dd", "aa", "bb", "dd", "aa", "dd", "bb", "dd", "aa", "cc", "bb", "cc", "dd", "cc"])
 );

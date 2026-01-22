@@ -31,40 +31,75 @@
 // 0 <= arr[i] <= 100
 // 0 <= target <= 300
 
+// function threeSumMulti(arr: number[], target: number): number {
+//
+//     const space = new Array<number>(101).fill(0);
+//     arr.forEach(n => space[n] += 1)
+//
+//     let count = 0;
+//     for (let left = 0; left < space.length; left++) {
+//         for (let middle = left; middle < space.length; middle++) {
+//             const right = target - left - middle;
+//
+//             if (right < 0 || right > 100) continue;
+//
+//             if (left === middle && middle === right) {
+//                 // there numbers and equal: Cn3
+//                 const cn3 = (space[left] * (space[left] - 1) * (space[left] - 2)) / 6;
+//                 count += cn3
+//             } else if (left === middle && middle !== right) {
+//                 // two numbers are equal: Cn2 * m
+//                 const cn2 = ((space[left] * (space[left] - 1)) / 2) * space[right];
+//                 count += cn2
+//             } else if (middle < right) {
+//                 // there numbers are different: n * m * q
+//                 count += space[left] * space[middle] * space[right];
+//             }
+//         }
+//     }
+//
+//     return count % (Math.pow(10, 9) + 7);
+// }
+
 function threeSumMulti(arr: number[], target: number): number {
+    const mapFreq = new Map<number, number>();
+    for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        const freq = (mapFreq.get(element) || 0) + 1;
+        mapFreq.set(element, freq);
+    }
 
-    const space = new Array<number>(101).fill(0);
-    arr.forEach(n => space[n] += 1)
+    const keySorted = Array.from(mapFreq.keys()).sort((a, b) => a - b)
 
-    let count = 0;
-    for (let left = 0; left < space.length; left++) {
-        for (let middle = left; middle < space.length; middle++) {
-            const right = target - left - middle;
+    let totalTuples = 0;
 
-            if (right < 0 || right > 100) continue;
+    // i < j & j < k
+    for (let i = 0; i < keySorted.length; i++) {
+        for (let j = 0; j < keySorted.length; j++) {
 
-            if (left === middle && middle === right) {
-                // there numbers and equal: Cn3
-                const cn3 = (space[left] * (space[left] - 1) * (space[left] - 2)) / 6;
-                count += cn3
-            } else if (left === middle && middle !== right) {
-                // two numbers are equal: Cn2 * m
-                const cn2 = ((space[left] * (space[left] - 1)) / 2) * space[right];
-                count += cn2
-            } else if (middle < right) {
-                // there numbers are different: n * m * q
-                count += space[left] * space[middle] * space[right];
+            let k = j + 1;
+            const num1 = keySorted[i];
+            const num2 = keySorted[j];
+            const num3 = target - num1 - num2;
+
+            const num3Freq = mapFreq.get(num3)
+            if (num3Freq === undefined) continue;
+
+            if (num1 === num2 && num2 === num3) {
+                
             }
+
+
         }
     }
 
-    return count % (Math.pow(10, 9) + 7);
+    return totalTuples;
 }
 
 const useCases = [
     [[1, 1, 2, 2, 3, 3, 4, 4, 5, 5], 8],
-    [[1, 1, 2, 2, 2, 2], 5],
-    [[2, 1, 3], 6],
+    // [[1, 1, 2, 2, 2, 2], 5],
+    // [[2, 1, 3], 6],
     // [
     //     [
     //         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
