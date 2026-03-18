@@ -1,0 +1,5 @@
+/home/jcarloshg/Documents/school/algorithms/c-sharp/Algorithms/obj/Debug/net8.0/a.GeneratedMSBuildEditorConfig.editorconfig
+/home/jcarloshg/Documents/school/algorithms/c-sharp/Algorithms/obj/Debug/net8.0/a.AssemblyInfoInputs.cache
+/home/jcarloshg/Documents/school/algorithms/c-sharp/Algorithms/obj/Debug/net8.0/a.AssemblyInfo.cs
+/home/jcarloshg/Documents/school/algorithms/c-sharp/Algorithms/obj/Debug/net8.0/a.csproj.CoreCompileInputs.cache
+/home/jcarloshg/Documents/school/algorithms/c-sharp/Algorithms/obj/Debug/net8.0/a.sourcelink.json
