@@ -32,20 +32,20 @@ public class Solution5
     {
 
         int sLength = s.Length;
-        if (s.Length <= 1) return s;
-        if (s.Length == null) return s;
+        if (s == null || s.Length <= 1) return s;
 
         int start = 0, maxLength = 1;
 
         for (int i = 0; i < sLength; i++)
         {
-            Console.WriteLine("\n==========");
+            Console.WriteLine("\n");
             int lent1 = GetLength(s, i, i);
             Console.WriteLine(lent1);
 
             if (lent1 > maxLength)
             {
                 start = i - (lent1 - 1) / 2;
+                Console.WriteLine($"i: {i}, start {start}, lent1: {lent1}, maxLength: {maxLength}");
                 maxLength = lent1;
             }
 
@@ -56,11 +56,10 @@ public class Solution5
 
     private int GetLength(string s, int left, int right)
     {
-        while (left >= 0 && right <= s.Length & s[left] == s[right])
+        while (left >= 0 && right < s.Length && s[left] == s[right])
         {
-            Console.WriteLine($"s[left]: {s[left]}");
-            Console.WriteLine($"s[right]: {s[right]}");
-
+            // Console.WriteLine($"s[left]: {s[left]}");
+            // Console.WriteLine($"s[right]: {s[right]}");
             left--;
             right++;
         }
@@ -114,7 +113,7 @@ Console.WriteLine(input01);
 var output01 = solution5.LongestPalindrome(input01);
 Console.WriteLine(output01);
 
-var input02 = "cbbd";
-Console.WriteLine(input02);
-var output02 = solution5.LongestPalindrome(input02);
-Console.WriteLine(output02);
+// var input02 = "cbbd";
+// Console.WriteLine(input02);
+// var output02 = solution5.LongestPalindrome(input02);
+// Console.WriteLine(output02);
