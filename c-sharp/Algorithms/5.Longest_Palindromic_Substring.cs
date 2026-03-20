@@ -44,7 +44,7 @@ public class Solution5
 
             if (lent1 > maxLength)
             {
-                start = i - (lent1 - 1) / 2;
+                start = i - ((lent1 - 1) / 2);
                 Console.WriteLine($"i: {i}, start {start}, lent1: {lent1}, maxLength: {maxLength}");
                 maxLength = lent1;
             }
@@ -92,28 +92,9 @@ public class Solution5
 // 
 //         return s.Substring(start, maxLen);
 //     }
-// 
-//     private int ExpandAroundCenter(string s, int left, int right)
-//     {
-//         while (left >= 0 && right < s.Length && s[left] == s[right])
-//         {
 //             left--;
 //             right++;
 //         }
 //         return right - left - 1;
 //     }
 // }
-
-
-
-var solution5 = new Solution5();
-
-var input01 = "babad";
-Console.WriteLine(input01);
-var output01 = solution5.LongestPalindrome(input01);
-Console.WriteLine(output01);
-
-// var input02 = "cbbd";
-// Console.WriteLine(input02);
-// var output02 = solution5.LongestPalindrome(input02);
-// Console.WriteLine(output02);
