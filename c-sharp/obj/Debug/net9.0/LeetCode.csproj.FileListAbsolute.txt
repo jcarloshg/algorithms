@@ -1,0 +1,15 @@
+/home/jcarloshg/Documents/school/algorithms/c-sharp/bin/Debug/net9.0/LeetCode
+/home/jcarloshg/Documents/school/algorithms/c-sharp/bin/Debug/net9.0/LeetCode.deps.json
+/home/jcarloshg/Documents/school/algorithms/c-sharp/bin/Debug/net9.0/LeetCode.runtimeconfig.json
+/home/jcarloshg/Documents/school/algorithms/c-sharp/bin/Debug/net9.0/LeetCode.dll
+/home/jcarloshg/Documents/school/algorithms/c-sharp/bin/Debug/net9.0/LeetCode.pdb
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.GeneratedMSBuildEditorConfig.editorconfig
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.AssemblyInfoInputs.cache
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.AssemblyInfo.cs
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.csproj.CoreCompileInputs.cache
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.sourcelink.json
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.dll
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/refint/LeetCode.dll
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.pdb
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/LeetCode.genruntimeconfig.cache
+/home/jcarloshg/Documents/school/algorithms/c-sharp/obj/Debug/net9.0/ref/LeetCode.dll

@@ -19,18 +19,18 @@ public class Solution11
         {
 
             // aux
-            Console.WriteLine($"\n leftIndex: {leftIndex}, rightIndex {rightIndex}, left {height[leftIndex]}, right {height[rightIndex]}");
+            // Console.WriteLine($"\n leftIndex: {leftIndex}, rightIndex {rightIndex}, left {height[leftIndex]}, right {height[rightIndex]}");
 
             // Y
             int minHeight = Math.Min(height[leftIndex], height[rightIndex]);
-            Console.WriteLine($"minHeight {minHeight}");
+            // Console.WriteLine($"minHeight {minHeight}");
             // X
             int distance = rightIndex - leftIndex;
-            Console.WriteLine($"distance {distance}");
+            // Console.WriteLine($"distance {distance}");
 
             // area
             int currentAmount = minHeight * distance;
-            Console.WriteLine($"currentAmount {currentAmount}");
+            // Console.WriteLine($"currentAmount {currentAmount}");
 
             // update amount
             if (currentAmount > amount)
