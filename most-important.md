@@ -37,8 +37,6 @@ Here are the most critical strategies used in high-level software engineering to
 - **Real-World Application:** **Social Media** (finding friends of friends) and Web Crawlers (indexing the internet).
 - **Complexity:** $O(V + E)$ where $V$ is vertices and $E$ is edges.
 
----
-
 ### Strategy Selection Matrix
 
 | Strategy                 | Use Case                             | Key Data Structure   |
@@ -47,7 +45,5 @@ Here are the most critical strategies used in high-level software engineering to
 | **Heaps/Priority Queue** | "Top K" elements / Scheduling        | Binary Heap          |
 | **Union-Find**           | Connected components in a network    | Disjoint Set         |
 | **Binary Search**        | Searching in sorted data             | Array / Search Space |
-
----
 
 **Next Step:** Would you like to dive deep into one of these patterns with a coding challenge, or should I give you a "Mystery Problem" to see if you can identify which pattern from this list applies?
