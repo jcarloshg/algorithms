@@ -24,6 +24,7 @@
 function generateParenthesis(n: number): string[] {
     const combinations: string[] = [];
     const dfs = (id: number, open: number, close: number, parentesis: string) => {
+
         if (open == n && close == n) {
             combinations.push(parentesis);
             return;
