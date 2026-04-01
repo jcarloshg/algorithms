@@ -3,15 +3,15 @@
 // Topics
 // premium lock icon
 // Companies
-// Given an array of distinct integers candidates and a target integer target, 
-// return a list of all unique combinations of candidates where the chosen 
+// Given an array of distinct integers candidates and a target integer target,
+// return a list of all unique combinations of candidates where the chosen
 // numbers sum to target. You may return the combinations in any order.
 //
 // The same number may be chosen from candidates an unlimited number of times.
-// Two combinations are unique if the frequency of at least one of the chosen 
+// Two combinations are unique if the frequency of at least one of the chosen
 // numbers is different.
 //
-// The test cases are generated such that the number of unique combinations 
+// The test cases are generated such that the number of unique combinations
 // that sum up to target is less than 150 combinations for the given input.
 //
 //
@@ -42,31 +42,29 @@
 // 1 <= target <= 40
 
 function combinationSum(candidates: number[], target: number): number[][] {
-
-    const combi: number[][] = [];
-    candidates.sort((a, b) => a - b);
+    const combinations: number[][] = [];
     const candidatesLength = candidates.length;
+    candidates.sort((a, b) => a - b);
 
-    const dfs = (array: number[], sum: number, pivot: number) => {
-
+    const dfs = (pivot: number, sum: number, array: number[]) => {
         if (sum == target) {
-            combi.push(array);
+            combinations.push(array);
             return;
         }
 
-        for (let index = pivot; index < candidatesLength; index++) {
-            const currentNumber = candidates[index];
-            const sumAux = sum + currentNumber;
+        for (let i = pivot; i < candidatesLength; i++) {
+            const element = candidates[i];
+            const newSum = sum + element;
 
-            if (sumAux > target) continue;
+            if (newSum > target) continue;
 
-            dfs([...array, currentNumber], sumAux, index);
+            dfs(i, newSum, [...array, element]);
         }
     };
 
-    dfs([], 0, 0);
+    dfs(0, 0, []);
 
-    return combi;
+    return combinations;
 }
 
 const combinationSumTests = [
